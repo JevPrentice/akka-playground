@@ -9,21 +9,19 @@ import com.spiderwalk.Shipper.Shipment
 object Notifier {
   final case class Notification(orderId: Int, shipmentSuccess: Boolean)
 
-  def apply(): Behavior[Notification] = Behaviors.receive {
-    (context, message) =>
-      context.log.info(message.toString)
-      Behaviors.same
+  def apply(): Behavior[Notification] = Behaviors.receive { (context, message) =>
+    context.log.info(message.toString)
+    Behaviors.same
   }
 }
 
 object Shipper {
   final case class Shipment(orderId: Int, product: String, number: Int, replyTo: typed.ActorRef[Notification])
 
-  def apply(): Behavior[Shipment] = Behaviors.receive {
-    (context, message) =>
-      context.log.info(message.toString)
-      message.replyTo ! Notification(message.orderId, shipmentSuccess = true)
-      Behaviors.same
+  def apply(): Behavior[Shipment] = Behaviors.receive { (context, message) =>
+    context.log.info(message.toString)
+    message.replyTo ! Notification(message.orderId, shipmentSuccess = true)
+    Behaviors.same
   }
 }
 
@@ -43,18 +41,16 @@ object OrderProcessor {
   //      Behaviors.same
   //  }
 
-  def apply(): Behavior[Order] = Behaviors.setup {
-    context =>
+  def apply(): Behavior[Order] = Behaviors.setup { context =>
 
-      val shipperRef: typed.ActorRef[Shipment] = context.spawn(Shipper(), "shipper")
-      val notifierRef: typed.ActorRef[Notification] = context.spawn(Notifier(), "notifier")
+    val shipperRef: typed.ActorRef[Shipment] = context.spawn(Shipper(), "shipper")
+    val notifierRef: typed.ActorRef[Notification] = context.spawn(Notifier(), "notifier")
 
-      Behaviors.receiveMessage {
-        message =>
-          context.log.info(message.toString)
-          shipperRef ! Shipment(message.id, message.product, message.number, notifierRef)
-          Behaviors.same
-      }
+    Behaviors.receiveMessage { message =>
+      context.log.info(message.toString)
+      shipperRef ! Shipment(message.id, message.product, message.number, notifierRef)
+      Behaviors.same
+    }
   }
 }
 

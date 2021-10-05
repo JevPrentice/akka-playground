@@ -3,7 +3,6 @@ package com.spiderwalk
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorRef, ActorSystem, Behavior}
 
-
 /**
  * @author Jev Prentice
  * @since 04 October 2021
