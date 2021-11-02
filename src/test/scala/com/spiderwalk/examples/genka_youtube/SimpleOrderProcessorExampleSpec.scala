@@ -1,8 +1,8 @@
-package com.spiderwalk
+package com.spiderwalk.examples.genka_youtube
 
 import akka.actor.testkit.typed.scaladsl.ScalaTestWithActorTestKit
-import com.spiderwalk.Notifier.Notification
-import com.spiderwalk.Shipper.Shipment
+import com.spiderwalk.examples.genka_youtube.Notifier.Notification
+import com.spiderwalk.examples.genka_youtube.Shipper.Shipment
 import org.scalatest.wordspec.AnyWordSpecLike
 
 /**

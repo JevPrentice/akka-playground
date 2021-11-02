@@ -1,10 +1,10 @@
-package com.spiderwalk
+package com.spiderwalk.examples.genka_youtube
 
 import akka.actor.typed
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorSystem, Behavior}
-import com.spiderwalk.Notifier.Notification
-import com.spiderwalk.Shipper.Shipment
+import com.spiderwalk.examples.genka_youtube.Notifier.Notification
+import com.spiderwalk.examples.genka_youtube.Shipper.Shipment
 
 object Notifier {
   final case class Notification(orderId: Int, shipmentSuccess: Boolean)

@@ -7,5 +7,5 @@ package com.spiderwalk
  * @since 04 October 2021
  */
 object Playground extends App {
-  println(s"Scala version: ${util.Properties.versionNumberString}")
+  println(s"Starting akka-playground with Scala version: ${util.Properties.versionNumberString}")
 }
