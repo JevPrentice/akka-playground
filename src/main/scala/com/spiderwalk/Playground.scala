@@ -1,5 +1,7 @@
 package com.spiderwalk
 
+import com.spiderwalk.shop.ShopApi
+
 /**
  *
  *
@@ -8,4 +10,5 @@ package com.spiderwalk
  */
 object Playground extends App {
   println(s"Starting akka-playground with Scala version: ${util.Properties.versionNumberString}")
+  ShopApi.start()
 }
